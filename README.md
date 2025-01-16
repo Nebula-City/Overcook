@@ -1,3 +1,3 @@
 # Overcook
-go fking learn
+Go learn
 * https://github.com/Nebula-City/Overcook.git
