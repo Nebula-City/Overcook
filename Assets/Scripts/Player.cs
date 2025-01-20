@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float rotateSpeed = 10f;
+    private bool iswalking = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,6 +19,8 @@ public class Player : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 directon = new Vector3(horizontal, 0, vertical);
         //前後左右的移動變數設置
+        iswalking = directon != Vector3.zero;
+        //設置iswalking狀態
         directon = directon.normalized;
         //單位向量化，使左上右上更準確
         transform.position += directon * Time.deltaTime * moveSpeed;
@@ -28,4 +31,12 @@ public class Player : MonoBehaviour
         }
         //更改player朝向
     }
+    public bool Iswalking
+    {
+        get
+        {
+            return iswalking;
+        }
+    }
+    //讓其他cs調用
 }
