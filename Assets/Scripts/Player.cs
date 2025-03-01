@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float rotateSpeed = 10f;
     [SerializeField] private GameInput gameInput;
+    public Rigidbody rb;
     private bool iswalking = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,6 +17,10 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+
+    }
+    void FixedUpdate()
     {
         Vector3 direction = gameInput.GetMovement();
         //獲取輸入
