@@ -642,6 +642,9 @@ MonoBehaviour:
   rotateSpeed: 10
   gameInput: {fileID: 1624525255}
   rb: {fileID: 0}
+  CounterLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!4 &1213051813
 Transform:
   m_ObjectHideFlags: 0

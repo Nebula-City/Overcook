@@ -1,13 +1,22 @@
+using System;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameInput : MonoBehaviour
 {
+    public event EventHandler OnInterAction;
     private GameControl gamecontrol;
     void Awake()
     {
         gamecontrol = new GameControl();
         gamecontrol.Player.Enable();
         //啟用新inpute
+        gamecontrol.Player.Interact.performed += Interact_performed;
+    }
+    private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnInterAction?.Invoke(this, EventArgs.Empty);
     }
     public Vector3 GetMovement()
     {
