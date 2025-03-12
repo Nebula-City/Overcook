@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public Rigidbody rb;
     public LayerMask CounterLayerMask;
     private bool iswalking = false;
+    private ClearCounter selectedCounter;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,13 +21,25 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        HandleInteraction();
     }
     void FixedUpdate()
     {
-        HandheldMovement();
+
+        HandleMovement();
     }
-    private void HandheldMovement()
+    private void GameInput_OnInterAction(object sende, System.EventArgs e)
+    {
+        selectedCounter?.Interact();
+    }
+    public bool Iswalking
+    {
+        get
+        {
+            return iswalking;
+        }
+    }
+    private void HandleMovement()
     {
         Vector3 direction = gameInput.GetMovement();
         //獲取輸入
@@ -41,27 +54,35 @@ public class Player : MonoBehaviour
         }
         //更改player朝向
     }
-    private void Handleinteraction()
+    private void HandleInteraction()
     {
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitinfo, 2f, CounterLayerMask))
         {
             if (hitinfo.transform.TryGetComponent(out ClearCounter counter))
             {
 
-                counter.Interact();
+                SetSelectCounter(counter);
+                
+            }
+            else
+            {
+                SetSelectCounter(null);
             }
         }
-    }
-    private void GameInput_OnInterAction(object sende, System.EventArgs e)
-    {
-        Handleinteraction();
-    }
-    public bool Iswalking
-    {
-        get
+        else
         {
-            return iswalking;
+            SetSelectCounter(null);
         }
+    }
+    public void SetSelectCounter(ClearCounter counter)
+    {
+        if (counter != selectedCounter)
+        {
+            selectedCounter?.CancelSelect();
+            counter?.SelectCounter();
+            this.selectedCounter = counter;
+        }
+
     }
     //讓其他cs調用
 }
