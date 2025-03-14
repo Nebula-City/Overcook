@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedCounter: {fileID: 3765144974691167989}
-  kitchenObjectPrefab: {fileID: 6918966350085851793, guid: 1706c8e13604d8e48a540e51bab3de00, type: 3}
+  kitchenObjectSO: {fileID: 0}
   TopPoint: {fileID: 1405761835176821312}
 --- !u!4 &1203745659831613662 stripped
 Transform:
