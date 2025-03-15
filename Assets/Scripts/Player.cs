@@ -3,7 +3,7 @@ using Unity.Mathematics;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : KitchenObjectHolder
 {
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float rotateSpeed = 10f;
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
             {
 
                 SetSelectCounter(counter);
-                
+
             }
             else
             {
