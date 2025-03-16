@@ -20,14 +20,15 @@ public class ClearCounter : KitchenObjectHolder
     }
     public void Interact()
     {
-        if (GetComponent<KitchenObject>() == null)
+        if (GetKitchenObject() == null)
         {
             KitchenObject kitchenObject = GameObject.Instantiate(kitchenObjectSO.prefab, GetHoldPoint()).GetComponent<KitchenObject>();
             SetKitchenObject(kitchenObject);
         }
         else
         {
-            Debug.LogWarning("已經有了-" + gameObject);
+
+            TransferKitchenObject(this, Player.Instance);
         }
         print(this.gameObject + "is interacting......");
 

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : KitchenObjectHolder
 {
+    public static Player Instance { get; private set; }
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float rotateSpeed = 10f;
     [SerializeField] private GameInput gameInput;
@@ -13,6 +14,10 @@ public class Player : KitchenObjectHolder
     private bool iswalking = false;
     private ClearCounter selectedCounter;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         gameInput.OnInterAction += GameInput_OnInterAction;

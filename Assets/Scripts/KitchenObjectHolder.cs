@@ -17,20 +17,20 @@ public class KitchenObjectHolder : MonoBehaviour
     {
         return HoldPoint;
     }
-    public void TransferKitchenObject(ClearCounter sourceCounter, ClearCounter targetCounter)
+    public void TransferKitchenObject(KitchenObjectHolder SourceHolder, KitchenObjectHolder TargetHolder)
     {
-        if (sourceCounter.GetKitchenObject() == null)
+        if (SourceHolder.GetKitchenObject() == null)
         {
             Debug.LogWarning("沒有東西可以轉移");
             return;
         }
-        if (targetCounter.GetKitchenObject() != null)
+        if (TargetHolder.GetKitchenObject() != null)
         {
             Debug.LogWarning("目標位置已經有東西了");
             return;
         }
-        targetCounter.AddKitchenObject(sourceCounter.GetKitchenObject());
-        sourceCounter.ClearKitchenObject();
+        TargetHolder.AddKitchenObject(SourceHolder.GetKitchenObject());
+        SourceHolder.ClearKitchenObject();
     }
     public void AddKitchenObject(KitchenObject kitchenObject)
     {
