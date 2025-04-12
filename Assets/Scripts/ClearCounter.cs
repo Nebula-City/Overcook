@@ -1,24 +1,24 @@
 using System;
 using UnityEngine;
 
-public class ClearCounter : KitchenObjectHolder
+public class ClearCounter : BaseCounter
 {
-    [SerializeField] private GameObject selectedCounter;
+
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
-    [SerializeField] private bool testing;
-    [SerializeField] private ClearCounter transferTargetCounter;
+    /*  [SerializeField] private bool testing;
+      [SerializeField] private ClearCounter transferTargetCounter;
 
 
-    private void Update()
-    {
-        if (testing && Input.GetMouseButtonDown(0))
-        {
+       private void Update()
+       {
+           if (testing && Input.GetMouseButtonDown(0))
+           {
 
-            TransferKitchenObject(this, transferTargetCounter);
-        }
-    }
-    public void Interact()
+               TransferKitchenObject(this, transferTargetCounter);
+           }
+       }*/
+    public override void Interact(Player player)
     {
         if (GetKitchenObject() == null)
         {
@@ -28,18 +28,10 @@ public class ClearCounter : KitchenObjectHolder
         else
         {
 
-            TransferKitchenObject(this, Player.Instance);
+            TransferKitchenObject(this, player);
         }
         print(this.gameObject + "is interacting......");
 
-    }
-    public void SelectCounter()
-    {
-        selectedCounter.SetActive(true);
-    }
-    public void CancelSelect()
-    {
-        selectedCounter.SetActive(false);
     }
 
 }

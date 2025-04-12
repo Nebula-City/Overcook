@@ -12,7 +12,7 @@ public class Player : KitchenObjectHolder
     public Rigidbody rb;
     public LayerMask CounterLayerMask;
     private bool iswalking = false;
-    private ClearCounter selectedCounter;
+    private BaseCounter selectedCounter;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -35,7 +35,7 @@ public class Player : KitchenObjectHolder
     }
     private void GameInput_OnInterAction(object sende, System.EventArgs e)
     {
-        selectedCounter?.Interact();
+        selectedCounter?.Interact(this);
     }
     public bool Iswalking
     {
@@ -63,7 +63,7 @@ public class Player : KitchenObjectHolder
     {
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitinfo, 2f, CounterLayerMask))
         {
-            if (hitinfo.transform.TryGetComponent(out ClearCounter counter))
+            if (hitinfo.transform.TryGetComponent<BaseCounter>(out BaseCounter counter))
             {
 
                 SetSelectCounter(counter);
@@ -79,7 +79,7 @@ public class Player : KitchenObjectHolder
             SetSelectCounter(null);
         }
     }
-    public void SetSelectCounter(ClearCounter counter)
+    public void SetSelectCounter(BaseCounter counter)
     {
         if (counter != selectedCounter)
         {
