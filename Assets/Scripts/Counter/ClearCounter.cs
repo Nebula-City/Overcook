@@ -4,8 +4,6 @@ using UnityEngine;
 public class ClearCounter : BaseCounter
 {
 
-    [SerializeField] private KitchenObjectSO kitchenObjectSO;
-
     /*  [SerializeField] private bool testing;
       [SerializeField] private ClearCounter transferTargetCounter;
 
@@ -20,17 +18,7 @@ public class ClearCounter : BaseCounter
        }*/
     public override void Interact(Player player)
     {
-        if (GetKitchenObject() == null)
-        {
-            KitchenObject kitchenObject = GameObject.Instantiate(kitchenObjectSO.prefab, GetHoldPoint()).GetComponent<KitchenObject>();
-            SetKitchenObject(kitchenObject);
-        }
-        else
-        {
 
-            TransferKitchenObject(this, player);
-        }
-        print(this.gameObject + "is interacting......");
 
     }
 
