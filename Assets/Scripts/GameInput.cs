@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class GameInput : MonoBehaviour
 {
     public event EventHandler OnInterAction;
+    public event EventHandler OnOperateAction;
     private GameControl gamecontrol;
     void Awake()
     {
@@ -13,6 +14,11 @@ public class GameInput : MonoBehaviour
         gamecontrol.Player.Enable();
         //啟用新inpute
         gamecontrol.Player.Interact.performed += Interact_performed;
+        gamecontrol.Player.Operate.performed += Operate_performed;
+    }
+    private void Operate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnOperateAction?.Invoke(this, EventArgs.Empty);
     }
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {

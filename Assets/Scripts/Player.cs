@@ -21,8 +21,9 @@ public class Player : KitchenObjectHolder
     void Start()
     {
         gameInput.OnInterAction += GameInput_OnInterAction;
+        gameInput.OnOperateAction += GameInput_OnOperateAction;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -36,6 +37,10 @@ public class Player : KitchenObjectHolder
     private void GameInput_OnInterAction(object sende, System.EventArgs e)
     {
         selectedCounter?.Interact(this);
+    }
+    private void GameInput_OnOperateAction(object sender, System.EventArgs e)
+    {
+        selectedCounter?.InteractOperate(this);
     }
     public bool Iswalking
     {

@@ -4,21 +4,23 @@ using UnityEngine;
 public class ClearCounter : BaseCounter
 {
 
-    /*  [SerializeField] private bool testing;
-      [SerializeField] private ClearCounter transferTargetCounter;
 
-
-       private void Update()
-       {
-           if (testing && Input.GetMouseButtonDown(0))
-           {
-
-               TransferKitchenObject(this, transferTargetCounter);
-           }
-       }*/
     public override void Interact(Player player)
     {
-
+        if (player.IsHaveKitchenObject())
+        {
+            if (IsHaveKitchenObject() == false)
+            {
+                TransferKitchenObject(player, this);
+            }
+        }
+        else
+        {
+            if (IsHaveKitchenObject() != false)
+            {
+                TransferKitchenObject(this, player);
+            }
+        }
 
     }
 
